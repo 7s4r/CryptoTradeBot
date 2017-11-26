@@ -2,8 +2,9 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { injectGlobal, ThemeProvider } from 'styled-components'
 import Helmet from 'react-helmet'
+import Auth from 'services/auth'
 
-import { HomePage } from 'components'
+import { HomePage, LoginPage, AuthCallbackPage } from 'components'
 
 // https://github.com/diegohaz/arc/wiki/Styling
 import theme from './themes/default'
@@ -13,6 +14,14 @@ injectGlobal`
     margin: 0;
   }
 `
+
+const auth = new Auth()
+
+const handleAuthentication = (nextState) => {
+  if (/access_token|id_token|error/.test(nextState.location.hash)) {
+    auth.handleAuthentication()
+  }
+}
 
 const App = () => {
   return (
@@ -31,6 +40,14 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Switch>
           <Route path="/" component={HomePage} exact />
+          <Route path="/login" render={props => <LoginPage auth={auth} {...props} />} />
+          <Route
+            path="/callback"
+            render={(props) => {
+              handleAuthentication(props)
+              return <AuthCallbackPage {...props} />
+            }}
+          />
         </Switch>
       </ThemeProvider>
     </div>
