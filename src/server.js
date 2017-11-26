@@ -13,9 +13,12 @@ import { renderToString } from 'react-router-server'
 import { port, host, basename } from 'config'
 import configureStore from 'store/configure'
 import api from 'services/api'
+import SocketClient from 'services/socket'
 import App from 'components/App'
 import Html from 'components/Html'
 import Error from 'components/Error'
+
+const socketClient = new SocketClient()
 
 const renderApp = ({
   store, context, location, sheet,
@@ -52,7 +55,7 @@ app.use(basename, express.static(path.resolve(process.cwd(), 'dist/public')))
 
 app.use((req, res, next) => {
   const location = req.url
-  const store = configureStore({}, { api: api.create() })
+  const store = configureStore({}, { api: api.create(), socket: socketClient })
   const context = {}
   const sheet = new ServerStyleSheet()
 
