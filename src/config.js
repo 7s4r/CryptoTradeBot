@@ -10,6 +10,11 @@ const config = {
     isBrowser: typeof window !== 'undefined',
     isServer: typeof window === 'undefined',
     apiUrl: 'https://jsonplaceholder.typicode.com',
+    fbAppId: '',
+    gtmId: 'GTM-PGWWBDS',
+    bitfinex: {
+      uri: 'wss://api.bitfinex.com',
+    },
   },
   test: {},
   development: {},
