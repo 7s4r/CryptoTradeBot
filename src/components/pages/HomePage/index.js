@@ -1,9 +1,12 @@
-// https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
+
+import { PageTemplate, SimpleMediaCard } from 'components'
 
 const HomePage = () => {
   return (
-    <div>Hello World</div>
+    <PageTemplate>
+      <SimpleMediaCard />
+    </PageTemplate>
   )
 }
 
