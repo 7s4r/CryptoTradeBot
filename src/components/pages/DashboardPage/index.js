@@ -1,11 +1,12 @@
 import React from 'react'
 
-import { PageTemplate, BasicTable } from 'components'
+import { PageTemplate } from 'components'
+import { CurrencyList } from 'containers'
 
 const DashboardPage = () => {
   return (
     <PageTemplate>
-      <BasicTable />
+      <CurrencyList />
     </PageTemplate>
   )
 }

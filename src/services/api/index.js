@@ -2,7 +2,7 @@
 import 'isomorphic-fetch'
 import { stringify } from 'query-string'
 import merge from 'lodash/merge'
-import { apiUrl } from 'config'
+import { bitfinex } from 'config'
 
 export const checkStatus = (response) => {
   if (response.ok) {
@@ -32,7 +32,7 @@ export const parseSettings = ({
 }
 
 export const parseEndpoint = (endpoint, params) => {
-  const url = endpoint.indexOf('http') === 0 ? endpoint : apiUrl + endpoint
+  const url = endpoint.indexOf('http') === 0 ? endpoint : bitfinex.apiUrl + endpoint
   const querystring = params ? `?${stringify(params)}` : ''
   return `${url}${querystring}`
 }
