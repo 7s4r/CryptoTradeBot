@@ -9,14 +9,18 @@ const config = {
     port: process.env.PORT || 3000,
     isBrowser: typeof window !== 'undefined',
     isServer: typeof window === 'undefined',
-    apiUrl: 'https://jsonplaceholder.typicode.com',
+    fbAppId: '',
+    gtmId: 'GTM-PGWWBDS',
+    bitfinex: {
+      apiUrl: 'https://api.bitfinex.com/v2/',
+      symbols: 'tBTCUSD',
+    },
   },
   test: {},
   development: {},
   production: {
     host: process.env.HOST || 'localhost',
     port: process.env.PORT || 8080,
-    apiUrl: 'https://jsonplaceholder.typicode.com',
   },
 }
 
