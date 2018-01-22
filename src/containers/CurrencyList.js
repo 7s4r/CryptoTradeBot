@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fromEntities, fromResource } from '../store/selectors'
 import { resourceListReadRequest } from '../store/actions'
-import { exchanges } from '../config'
 
 import CurrencyList from '../components/CurrencyList'
 
@@ -12,11 +11,11 @@ class CurrencyListContainer extends Component {
     list: PropTypes.arrayOf(PropTypes.array).isRequired,
     loading: PropTypes.bool,
     failed: PropTypes.bool,
-    readList: PropTypes.func.isRequired,
+    request: PropTypes.func.isRequired,
   }
 
   componentWillMount() {
-    this.props.readList()
+    this.props.request()
   }
 
   render() {
@@ -27,11 +26,11 @@ class CurrencyListContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  list: fromEntities.getList(state, 'tickers', fromResource.getList(state, 'tickers')),
+  list: fromEntities.getList(state, 'markets', fromResource.getList(state, 'markets')),
 })
 
-const mapDispatchToProps = dispatch => ({
-  readList: () => dispatch(resourceListReadRequest('tickers', { symbols: 'tBTCUSD' })),
+const mapDispatchToProps = (dispatch, { symbols }) => ({
+  request: () => dispatch(resourceListReadRequest('markets', { symbols })),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrencyListContainer)

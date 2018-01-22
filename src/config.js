@@ -12,8 +12,7 @@ const config = {
     gtmId: 'GTM-PGWWBDS',
     exchanges: {
       bitfinex: {
-        apiUrl: 'https://api.bitfinex.com/v1/',
-        symbols: 'tBTCUSD',
+        apiUrl: 'https://api.bitfinex.com/v2/',
       },
       bittrex: {
         apiUrl: 'https://bittrex.com/api/v1.1/public/',

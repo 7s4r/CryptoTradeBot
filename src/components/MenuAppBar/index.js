@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import AppBar from 'material-ui/AppBar'
@@ -6,7 +7,6 @@ import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
-import AccountCircle from 'material-ui-icons/AccountCircle'
 import Menu, { MenuItem } from 'material-ui/Menu'
 
 const styles = () => ({
@@ -41,18 +41,15 @@ class MenuAppBar extends Component {
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, history } = this.props
     const { auth, anchorEl } = this.state
     const open = Boolean(anchorEl)
 
     return (
       <AppBar position="static" className={classes.root}>
         <Toolbar>
-          <IconButton className={classes.menuButton} color="contrast" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
           <Typography type="title" color="inherit" className={classes.flex}>
-            CryptoBot
+            CryptoTradeBot
           </Typography>
           {auth && (
             <div>
@@ -62,7 +59,7 @@ class MenuAppBar extends Component {
                 onClick={this.handleMenu}
                 color="contrast"
               >
-                <AccountCircle />
+                <MenuIcon />
               </IconButton>
               <Menu
                 id="menu-appbar"
@@ -78,8 +75,12 @@ class MenuAppBar extends Component {
                 open={open}
                 onRequestClose={this.handleRequestClose}
               >
-                <MenuItem onClick={this.handleRequestClose}>Profile</MenuItem>
-                <MenuItem onClick={this.handleRequestClose}>My account</MenuItem>
+                <MenuItem onClick={() => history.push('/dashboard')}>Dashboard</MenuItem>
+                <MenuItem onClick={() => history.push('/currencies')}>Currencies</MenuItem>
+                <MenuItem onClick={() => history.push('/orders')}>Orders</MenuItem>
+                <MenuItem onClick={() => history.push('/diary')}>Diary</MenuItem>
+                <MenuItem onClick={() => history.push('/signals')}>Signals</MenuItem>
+                <MenuItem onClick={() => history.push('/strategies')}>Strategies</MenuItem>
               </Menu>
             </div>
           )}
@@ -91,6 +92,7 @@ class MenuAppBar extends Component {
 
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
+  history: PropTypes.any,
 }
 
-export default withStyles(styles)(MenuAppBar)
+export default withStyles(styles)(withRouter(MenuAppBar))

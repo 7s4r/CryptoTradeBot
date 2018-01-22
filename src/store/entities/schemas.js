@@ -1,3 +1,3 @@
 import { schema } from 'normalizr'
 
-export const tickers = new schema.Entity('tickers')
+export const markets = new schema.Entity('markets')

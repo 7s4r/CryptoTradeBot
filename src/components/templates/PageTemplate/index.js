@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import MenuAppBar from '../../MenuAppBar'
+import './styles.css'
 
 const PageTemplate = ({ children }) => (
   <div>
