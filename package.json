@@ -41,7 +41,7 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.0.0",
+    "@storybook/addon-actions": "^5.1.11",
     "@storybook/react": "^3.0.0",
     "@webpack-blocks/dev-server2": "^0.4.0",
     "@webpack-blocks/webpack2": "^0.4.0",
